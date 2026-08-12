@@ -671,10 +671,12 @@ def render_post(p, all_posts):
     {src_html}
     <aside class="disclosure">
       <h2>How this article was produced</h2>
-      <p>Researched and drafted by the {esc(CFG['author']['name'])} with AI-assisted
-      research tooling, then fact-checked against the primary sources listed above and
-      reviewed by a human editor before publication. Figures are stated with the date
-      they were current. See our <a href="/editorial-policy/">editorial &amp; AI policy</a>
+      <p>Researched, drafted and published automatically by the
+      {esc(CFG['author']['name'])} using AI tooling. Every figure above had to resolve to
+      one of the cited sources before this page could be built — an unsourced number
+      fails the deploy. A human reviews articles after publication, not before, and
+      corrections are dated in public. Figures are stated with the date they were
+      current. See our <a href="/editorial-policy/">editorial &amp; AI policy</a>
       and <a href="/corrections/">corrections policy</a>.</p>
     </aside>
     {ad_unit('footer')}

@@ -52,9 +52,17 @@ We use AI research and drafting tools, and we would rather tell you than have yo
 
 **Permitted:** searching and summarising standards documents; producing first drafts from verified research notes; suggesting structure; copy-editing; generating the abstract cover artwork on articles without a photograph.
 
-**Not permitted:** supplying a fact. Every figure the tooling produces is checked against the primary source by a human before publication, and anything that cannot be verified is deleted rather than softened. The tooling does not invent expert quotes, does not write personal anecdotes, does not generate photorealistic imagery of products or people, and does not write a word about a product's measured behaviour that is not traceable to a cited measurement.
+**Not permitted:** asserting a figure that no cited document supports. The tooling does not invent expert quotes, does not write personal anecdotes, does not generate photorealistic imagery of products or people, and does not write a word about a product's measured behaviour that is not traceable to a cited measurement.
 
-No article is published without a human editor reading it in full against its sources.
+### How articles reach the site
+
+Be clear about this, because most sites are not. Articles here are researched, drafted **and published automatically**, once they pass the gate described in section 4. A human does not read every article before it goes live.
+
+What stands in for that is machine enforcement, and it is stricter than it sounds: an article cannot publish if any stated figure lacks a resolving source index, if fewer than three sources are cited, if none is a primary document, if any source URL is dead, or if the piece is too short or missing its FAQ, takeaways or policy links. Those are hard failures, not warnings — the deploy stops.
+
+What machine enforcement cannot check is judgement: whether a figure was read in the right context, whether a specification was current, whether the framing is fair. That is reviewed **after** publication, on an ongoing basis, and anything wrong is corrected in public and dated on the [corrections page](/corrections/).
+
+If you would rather read publications that hold everything for human review before release, that is a reasonable preference and this is not one of them.
 
 We also decline the highest-volume tactic in this category outright: we do not rewrite other outlets' articles. Paraphrasing someone else's reporting is a derivative work whether or not you link to them, and it is exactly the pattern search engines classify as scaled content abuse. Where another publication's work matters, we quote a short passage with attribution and then add something they did not say.
 

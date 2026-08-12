@@ -43,7 +43,7 @@ Three further sections open as their first articles publish: **Spec Decoder** (w
 
 ## Who writes it
 
-Articles are produced by the PanelProof editorial desk. We use AI research tooling to draft and to search standards documents; every figure is then checked against the cited source and reviewed by a human editor before publication. Our [editorial and AI policy](/editorial-policy/) sets out exactly what the tooling is and is not permitted to do, and our [corrections policy](/corrections/) explains what happens when we get something wrong.
+Articles are researched, drafted and published automatically using AI tooling that reads the standards documents directly, and each one must clear an automated sourcing gate before it can go live — no resolving source for a figure means no publication. A human reviews articles after they publish rather than before, and corrections are logged and dated in public. Our [editorial and AI policy](/editorial-policy/) sets out exactly how that works and what the tooling may not do; the [corrections policy](/corrections/) explains what happens when we get something wrong.
 
 We do not invent bylines, we do not fabricate expert quotes, and we do not manufacture personal anecdotes about testing we did not perform.
 

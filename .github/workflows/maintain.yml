@@ -1,0 +1,78 @@
+name: Weekly integrity check
+
+# The decay vector for this site is link rot. Every article's figures are tied to
+# a source URL, and when VESA reorganises displayhdr.org or a manufacturer retires
+# a spec page, the citation silently stops resolving — the article still claims a
+# number, but the evidence is gone. This job re-runs the full publication gate
+# WITH network access every week and opens an issue when something breaks.
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"     # Mondays 08:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build
+        run: python build.py
+
+      # No PP_OFFLINE here — this is the point of the job. Every cited URL is
+      # fetched, and a dead one fails the step.
+      - name: Validate with live source checking
+        id: check
+        run: python scripts/validate.py 2>&1 | tee /tmp/report.txt
+
+      - name: Open an issue if the gate failed
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let report = 'No report captured.';
+            try { report = fs.readFileSync('/tmp/report.txt', 'utf8').slice(0, 55000); } catch (e) {}
+            const title = 'Weekly integrity check failed';
+            const body = [
+              'The weekly run of `scripts/validate.py` with live source checking failed.',
+              '',
+              'The most likely cause is link rot: a cited source URL no longer resolves.',
+              'A citation that 404s means an article is asserting a figure whose evidence',
+              'is gone — fix the source or correct the article, and log it on /corrections/.',
+              '',
+              '```',
+              report.trim(),
+              '```',
+              '',
+              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            ].join('\n');
+
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'integrity',
+            });
+            if (existing.data.length) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.data[0].number, body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, body, labels: ['integrity'],
+              });
+            }
