@@ -76,14 +76,14 @@ resources:
   - title: "TODO official portal"
     url: "https://"
     note: "TODO what it is and why you would open it"
-# At least 3 sources, at least 1 marked `primary: true` — the statistics office,
-# central bank, exchange, regulator or filing you read the figure off. News
-# coverage corroborates a primary source; it does not replace one.
+# At least 3 sources, at least 1 marked `primary: true` — the standards body,
+# panel datasheet, manufacturer specification page, or the named lab that took
+# the measurement. Reporting about a standard corroborates it; it is not it.
 # `accessed` is the date you actually opened it and saw the number.
 sources:
   - title: "TODO the page or release title as published"
     url: "https://"
-    publisher: "TODO Bank of Korea / Statistics Korea / KRX / DART / ministry"
+    publisher: "TODO VESA / HDMI Forum / panel datasheet / manufacturer spec page"
     accessed: {date}
     primary: true
   - title: "TODO"

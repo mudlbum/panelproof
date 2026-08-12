@@ -231,7 +231,7 @@ def load_posts():
         if meta.get("draft"):
             continue
         meta["slug"] = meta.get("slug") or slugify(meta["title"])
-        meta["category"] = meta.get("category", "markets")
+        meta["category"] = meta.get("category", "specs")
         meta["date"] = meta.get("date") or dt.date.today()
         meta["updated"] = meta.get("updated") or meta["date"]
         meta["body_md"] = body
@@ -373,11 +373,13 @@ def header_html(active=""):
 <header class="site-header">
   <div class="wrap header-inner">
     <a class="brand" href="/" aria-label="{esc(CFG['site_name'])} home">
-      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true" width="34" height="34">
-        <circle cx="20" cy="20" r="18" fill="none" stroke="var(--accent)" stroke-width="3"
-                stroke-dasharray="70 43" transform="rotate(-40 20 20)"/>
-        <circle cx="20" cy="20" r="11" fill="none" stroke="var(--accent-2)" stroke-width="3"
-                stroke-dasharray="42 27" transform="rotate(140 20 20)"/>
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true" width="30" height="30">
+        <rect x="2.5" y="5.5" width="35" height="29" rx="3" fill="none"
+              stroke="var(--line-3)" stroke-width="2"/>
+        <path d="M7 25 L13 25 L16 14 L21 30 L25 20 L28 20" fill="none"
+              stroke="var(--accent)" stroke-width="2.4"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="31.5" cy="20" r="2" fill="var(--accent-2)"/>
       </svg>
       <span class="brand-text"><strong>{esc(CFG["brand"]["strong"])}</strong>{esc(CFG["brand"]["rest"])}</span>
     </a>
@@ -914,15 +916,14 @@ Sitemap: {SITE}/sitemap.xml
         write(os.path.join(DIST, "ads.txt"), f"google.com, pub-{pub}, DIRECT, f08c47fec0942fa0\n")
 
     write(os.path.join(DIST, "favicon.svg"), """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
-<rect width="40" height="40" rx="8" fill="#0a0e1a"/>
-<circle cx="20" cy="20" r="13" fill="none" stroke="#c8102e" stroke-width="4"
- stroke-dasharray="52 30" transform="rotate(-40 20 20)"/>
-<circle cx="20" cy="20" r="7" fill="none" stroke="#7aa2ff" stroke-width="4"
- stroke-dasharray="26 18" transform="rotate(140 20 20)"/></svg>""")
+<rect width="40" height="40" rx="8" fill="#0b0e12"/>
+<rect x="6" y="9" width="28" height="22" rx="2.5" fill="none" stroke="#3a444f" stroke-width="2"/>
+<path d="M10 25 L14.5 25 L17 15 L21.5 29 L25 20 L29.5 20" fill="none" stroke="#34d3f5"
+ stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>""")
 
     write(os.path.join(DIST, "manifest.webmanifest"), json.dumps({
-        "name": CFG["site_name"], "short_name": "FoK", "start_url": "/",
-        "display": "standalone", "background_color": "#0a0e1a", "theme_color": "#0a0e1a",
+        "name": CFG["site_name"], "short_name": CFG["site_name"], "start_url": "/",
+        "display": "standalone", "background_color": "#0b0e12", "theme_color": "#0b0e12",
         "icons": [{"src": "/img/logo.png", "sizes": "512x512", "type": "image/png"}]}))
 
 

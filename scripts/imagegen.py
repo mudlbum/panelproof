@@ -23,13 +23,13 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 FONT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "fonts")
 
 PALETTES = {
-    "markets":    [("#0a0e1a", "#131c33"), "#c8102e", "#ff5a6e", "#f4c04e"],
-    "technology": [("#050b16", "#0d2140"), "#0b6efd", "#57b8ff", "#7ef3d0"],
-    "living":     [("#06140f", "#0d2c22"), "#0f9d76", "#5fe3b4", "#ffd166"],
-    "society":    [("#0d0718", "#1e1236"), "#7c3aed", "#b98cff", "#ff9ecb"],
-    "policy":     [("#160d02", "#2e1a06"), "#e07a00", "#ffb340", "#ffe5a3"],
-    "kcontent":   [("#16050f", "#330a22"), "#ff2e88", "#ff86bd", "#ffd166"],
-    "_default":   [("#0a0e1a", "#141c2e"), "#c8102e", "#7aa2ff", "#f4c04e"],
+    "specs":       [("#0b0e12", "#0f2029"), "#34d3f5", "#8ae9ff", "#ffb020"],
+    "hdr":         [("#100b04", "#2a1c07"), "#ffb020", "#ffd47a", "#34d3f5"],
+    "panels":      [("#0c0918", "#1d1436"), "#a78bfa", "#c9b6ff", "#34d3f5"],
+    "motion":      [("#06120d", "#0c2a1f"), "#3df29a", "#8dfac6", "#ffb020"],
+    "connections": [("#130808", "#2e1114"), "#ff6b6b", "#ffa8a8", "#ffb020"],
+    "setup":       [("#080e14", "#102534"), "#7dd3fc", "#b8e6ff", "#3df29a"],
+    "_default":    [("#0b0e12", "#141c26"), "#34d3f5", "#8ae9ff", "#ffb020"],
 }
 
 
@@ -427,17 +427,19 @@ def social_card(slug: str, category: str, title: str, kicker: str, out_path: str
 
 def logo(out_path: str, size=(512, 512)):
     w, h = size
-    img = Image.new("RGB", size, _hex("#0a0e1a"))
+    img = Image.new("RGB", size, _hex("#0b0e12"))
     d = ImageDraw.Draw(img, "RGBA")
     for i in range(h):
-        d.line([(0, i), (w, i)], fill=_hex("#0a0e1a") if i < h * .3 else _hex("#141c2e"))
-    cx, cy, r = w * .5, h * .5, w * .30
-    d.arc([cx - r, cy - r, cx + r, cy + r], 200, 20, fill=_hex("#c8102e"), width=int(w * .055))
-    d.arc([cx - r * .62, cy - r * .62, cx + r * .62, cy + r * .62], 20, 200,
-          fill=_hex("#7aa2ff"), width=int(w * .055))
-    f = _font("InstrumentSans-Bold.ttf", int(w * .30))
-    tw = d.textlength("FK", font=f)
-    d.text((cx - tw / 2, cy - w * .19), "FK", font=f, fill=(255, 255, 255, 245))
+        d.line([(0, i), (w, i)], fill=_hex("#0b0e12") if i < h * .3 else _hex("#111820"))
+    # panel bezel with a signal trace across it — the site mark
+    m = w * .17
+    d.rounded_rectangle([m, m * 1.28, w - m, h - m * 1.28], radius=int(w * .035),
+                        outline=_hex("#3a444f"), width=int(w * .022))
+    bx, by, bw = m * 1.5, h * .5, (w - m * 3)
+    pts = [(bx, by + bw * .07), (bx + bw * .20, by + bw * .07),
+           (bx + bw * .33, by - bw * .20), (bx + bw * .52, by + bw * .26),
+           (bx + bw * .68, by - bw * .04), (bx + bw * .86, by - bw * .04)]
+    d.line(pts, fill=_hex("#34d3f5"), width=int(w * .028), joint="curve")
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     img.save(out_path, "PNG", optimize=True)
     return out_path
@@ -446,7 +448,7 @@ def logo(out_path: str, size=(512, 512)):
 if __name__ == "__main__":
     import sys
     slug = sys.argv[1] if len(sys.argv) > 1 else "demo-post"
-    cat = sys.argv[2] if len(sys.argv) > 2 else "markets"
+    cat = sys.argv[2] if len(sys.argv) > 2 else "specs"
     hero(slug, cat, f"/tmp/{slug}-hero.webp")
     social_card(slug, cat, "Demo headline for the social card generator", cat, f"/tmp/{slug}-og.png")
     print("wrote /tmp")

@@ -39,20 +39,20 @@ TIMEOUT = 20
 UA = "panelproof-build/1.0 (+https://panelproof.com/)"
 
 # Fallback search terms per category, used when a post declares no photo_query
-# and its tags yield nothing useful. Deliberately concrete and Korea-anchored:
-# generic "business" stock photography is what makes a site look like a template.
+# and its tags yield nothing useful. Deliberately concrete: generic "technology"
+# stock photography is what makes a site look like a template.
 CATEGORY_TERMS = {
-    "markets":    "Seoul financial district skyline trading",
-    "technology": "semiconductor wafer fabrication clean room",
-    "living":     "Seoul street daily life neighbourhood",
-    "society":    "Seoul crowd people city street",
-    "policy":     "Seoul government building architecture",
-    "kcontent":   "Seoul concert stage lights performance",
-    "_default":   "Seoul South Korea skyline",
+    "specs":       "computer monitor screen close up pixels macro",
+    "hdr":         "bright display screen contrast dark room glow",
+    "panels":      "oled display panel macro subpixel screen texture",
+    "motion":      "gaming monitor motion blur screen refresh",
+    "connections": "hdmi displayport cable connector ports close up",
+    "setup":       "desk setup monitor calibration workstation",
+    "_default":    "computer monitor display screen close up",
 }
 
 STOPWORDS = {"the", "and", "for", "with", "from", "that", "this", "what", "how",
-             "why", "korea", "korean", "2026", "explained", "guide"}
+             "why", "vesa", "2026", "explained", "guide", "specs", "monitor"}
 
 
 def _load_index() -> dict:
@@ -74,7 +74,7 @@ def query_for(post: dict) -> str:
     tags = [str(t) for t in (post.get("tags") or [])]
     words = [t for t in tags if t.lower() not in STOPWORDS and not re.fullmatch(r"\d+", t)]
     if words:
-        return " ".join(words[:3]) + " Korea"
+        return " ".join(words[:3]) + " display screen"
     return CATEGORY_TERMS.get(post.get("category", "_default"), CATEGORY_TERMS["_default"])
 
 

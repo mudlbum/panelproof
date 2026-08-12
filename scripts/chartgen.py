@@ -11,14 +11,14 @@ Front matter
 ------------
 chart:
   type: line              # line | bar | grouped_bar
-  title: "KOSPI, Jan-Aug 2026"
+  title: "Peak luminance by DisplayHDR tier"
   y_label: "Index level"
   y_suffix: ""            # e.g. "%", "tn", "k" — appended to axis ticks
-  source: "Korea Exchange"        # printed bottom-left; required
+  source: "VESA DisplayHDR CTS 1.2"   # printed bottom-left; required
   annotate_last: true             # label the final point of each series
   series:
-    - label: "KOSPI"
-      points: [["Jan", 2400], ["Feb", 2680], ["Mar", 3120]]
+    - label: "Peak (8% patch)"
+      points: [["HDR 400", 400], ["HDR 600", 600], ["HDR 1000", 1000]]
 
 A chart block that fails to validate raises ValueError, which fails the build —
 a wrong chart is worse than no chart.
@@ -36,21 +36,21 @@ FONT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__
                         "assets", "fonts")
 
 # Matches the dark end of the site palette in static/style.css.
-INK = "#eef1f6"
-INK_2 = "#b3bccc"
-INK_3 = "#8b95a8"
-GRID = "#222a3d"
-BG = "#0a0e1a"
-PANEL = "#111726"
+INK = "#e8edf4"
+INK_2 = "#9fabba"
+INK_3 = "#6d7987"
+GRID = "#1c2229"
+BG = "#0b0e12"
+PANEL = "#0e1218"
 
 ACCENTS = {
-    "markets":    ["#ff4d63", "#f4c04e", "#7db2ff"],
-    "technology": ["#5aa0ff", "#7ef3d0", "#ffa733"],
-    "living":     ["#3fd6a4", "#ffd166", "#5aa0ff"],
-    "society":    ["#a882ff", "#ff9ecb", "#5aa0ff"],
-    "policy":     ["#ffa733", "#ffe5a3", "#5aa0ff"],
-    "kcontent":   ["#ff2e88", "#ffd166", "#5aa0ff"],
-    "_default":   ["#ff4d63", "#5aa0ff", "#3fd6a4"],
+    "specs":       ["#34d3f5", "#ffb020", "#a78bfa"],
+    "hdr":         ["#ffb020", "#34d3f5", "#ff6b6b"],
+    "panels":      ["#a78bfa", "#34d3f5", "#3df29a"],
+    "motion":      ["#3df29a", "#34d3f5", "#ffb020"],
+    "connections": ["#ff6b6b", "#ffb020", "#34d3f5"],
+    "setup":       ["#7dd3fc", "#3df29a", "#ffb020"],
+    "_default":    ["#34d3f5", "#ffb020", "#a78bfa"],
 }
 
 _FAMILY: str | None = None

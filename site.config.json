@@ -1,30 +1,28 @@
 {
   "site_name": "PanelProof",
-  "brand": { "strong": "Panel", "rest": "Proof" },
+  "brand": {
+    "strong": "Panel",
+    "rest": "Proof"
+  },
   "tagline": "The spec sheet is a marketing document. We check it against the standard.",
   "domain": "https://panelproof.com",
   "locale": "en_US",
   "lang": "en",
   "timezone": "America/Toronto",
-
   "publisher": {
     "name": "PanelProof",
     "legal_name": "PanelProof",
     "email": "editor@panelproof.com",
     "founded": "2026"
   },
-
   "author": {
     "name": "The PanelProof Editorial Desk",
     "slug": "editorial-desk",
     "role": "Editorial & Research Desk",
     "bio": "PanelProof does not operate a measurement lab, and says so. What it does is read the documents almost nobody reads end to end - the VESA DisplayHDR and ClearMR compliance test specifications, panel-maker datasheets, HDMI and DisplayPort feature tables, and the published measurement data from independent labs - and reconcile them against what manufacturers print on the box. Every claim is traced to the standard or the measurement it came from, with the revision and the date it was current."
   },
-
   "footer_blurb": "Independent analysis of display specifications, certification standards and panel technology. We reconcile marketing claims against published standards and independent lab measurements, and we cite both.",
-
   "disclaimer_line": "Nothing here substitutes for measuring your own unit, and panel behaviour varies between production runs",
-
   "knows_about": [
     "display specifications",
     "VESA DisplayHDR certification",
@@ -37,87 +35,108 @@
     "display colour gamut and calibration",
     "variable refresh rate"
   ],
-
   "homepage": {
     "title": "PanelProof - display specs, checked against the standard",
     "meta": "Independent analysis of monitor and TV specifications: what DisplayHDR, ClearMR, response time and contrast numbers actually certify, and what the box leaves out.",
     "h1": "The number on the box, and the number that matters",
     "dek": "Most display specifications are unregulated, self-reported and measured however the manufacturer prefers. PanelProof reads the certification standards and the independent lab data, and tells you which claims are load-bearing."
   },
-
   "not_found_meta": "We could not find that page. Browse PanelProof's analysis of display specifications, certification standards, panel technology and calibration instead.",
-
   "llms_blurb": "Independent analysis of display specifications, certification standards and panel technology for monitors, TVs and laptop screens.",
-
   "sourcing_note": "Claims are traced to primary sources - VESA compliance test specifications, panel-maker datasheets, HDMI Forum and VESA standards documentation, manufacturer specification pages and published independent lab measurements - with the specification revision and the date the figure was current. PanelProof does not operate its own measurement lab and does not present third-party measurements as its own. Content is drafted with AI assistance and reviewed by a human editor; see /editorial-policy/.",
-
   "adsense": {
     "enabled": false,
     "publisher_id": "ca-pub-0000000000000000",
     "auto_ads": true,
-    "slots": { "in_article": "0000000000", "sidebar": "0000000000", "footer": "0000000000" }
+    "slots": {
+      "in_article": "0000000000",
+      "sidebar": "0000000000",
+      "footer": "0000000000"
+    }
   },
-
-  "analytics": { "ga4_id": "", "search_console_verification": "" },
-
+  "analytics": {
+    "ga4_id": "",
+    "search_console_verification": ""
+  },
   "categories": [
     {
       "slug": "specs",
       "name": "Spec Decoder",
       "blurb": "What each number on the box actually certifies - and the measurement conditions the box leaves off.",
-      "accent": "#0b6efd",
+      "accent": "#34d3f5",
       "meta": "Plain explanations of display specifications: response time, contrast ratio, colour gamut, brightness, refresh rate and bit depth - what each measures, how it is gamed, and which ones anybody certifies."
     },
     {
       "slug": "hdr",
       "name": "HDR & Brightness",
       "blurb": "DisplayHDR tiers, real peak luminance, local dimming, and why most HDR badges certify almost nothing.",
-      "accent": "#e07a00",
+      "accent": "#ffb020",
       "meta": "How VESA DisplayHDR and DisplayHDR True Black certification works, what each tier requires in cd/m2, and why a DisplayHDR 400 badge and a True Black 1400 badge describe entirely different products."
     },
     {
       "slug": "panels",
       "name": "Panel Technology",
       "blurb": "QD-OLED, WOLED, tandem OLED, Mini-LED and IPS - who makes the panel, and what that determines.",
-      "accent": "#7c3aed",
+      "accent": "#a78bfa",
       "meta": "How QD-OLED, WOLED, tandem OLED, Mini-LED and IPS panels differ in structure, and which characteristics follow from the panel itself rather than the brand on the bezel."
     },
     {
       "slug": "motion",
       "name": "Motion & Latency",
       "blurb": "Response time, overdrive, ClearMR, VRR, frame pacing, and the difference between fast and clear.",
-      "accent": "#0f9d76",
+      "accent": "#3df29a",
       "meta": "Response time measurement, grey-to-grey versus MPRT, overdrive overshoot, VESA ClearMR tiers, variable refresh rate and input lag - what actually determines motion clarity on a display."
     },
     {
       "slug": "connections",
       "name": "Ports & Bandwidth",
       "blurb": "HDMI 2.1, DisplayPort 2.1, DSC and USB-C - what a cable and a port can actually carry.",
-      "accent": "#c8102e",
+      "accent": "#ff6b6b",
       "meta": "HDMI and DisplayPort bandwidth tiers, Display Stream Compression, USB-C alt mode and cable certification - which combinations carry a given resolution and refresh rate, and which quietly do not."
     },
     {
       "slug": "setup",
       "name": "Setup & Calibration",
       "blurb": "Getting the display you already paid for - settings, profiles, and the defaults worth changing.",
-      "accent": "#0891b2",
+      "accent": "#7dd3fc",
       "meta": "Practical display setup: picture modes, HDR handling in Windows and consoles, colour profiles, subpixel rendering and the factory defaults most worth changing."
     }
   ],
-
   "nav": [
-    { "label": "Spec Decoder", "url": "/specs/" },
-    { "label": "HDR", "url": "/hdr/" },
-    { "label": "Panels", "url": "/panels/" },
-    { "label": "Motion", "url": "/motion/" },
-    { "label": "Ports", "url": "/connections/" },
-    { "label": "Setup", "url": "/setup/" },
-    { "label": "About", "url": "/about/" }
+    {
+      "label": "Spec Decoder",
+      "url": "/specs/"
+    },
+    {
+      "label": "HDR",
+      "url": "/hdr/"
+    },
+    {
+      "label": "Panels",
+      "url": "/panels/"
+    },
+    {
+      "label": "Motion",
+      "url": "/motion/"
+    },
+    {
+      "label": "Ports",
+      "url": "/connections/"
+    },
+    {
+      "label": "Setup",
+      "url": "/setup/"
+    },
+    {
+      "label": "About",
+      "url": "/about/"
+    }
   ],
-
   "posts_per_page": 12,
-  "social": { "x": "", "linkedin": "" },
-
+  "social": {
+    "x": "",
+    "linkedin": ""
+  },
   "factcheck": {
     "enforce_from": "2026-01-01",
     "min_sources": 3,

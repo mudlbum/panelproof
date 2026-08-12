@@ -17,7 +17,7 @@ sources:                      # >= MIN_SOURCES entries, ordered; cited by 1-base
     primary: true             # optional; see MIN_PRIMARY below
 
 key_takeaways:                # each item a mapping (legacy plain strings are rejected)
-  - text: "The KOSPI rose **92%** in H1 2026."
+  - text: "True Black 1400 requires **700 cd/m2** sustained full-screen."
     source: 2                 # int, or list of ints, indexing `sources`
 
 Rules enforced

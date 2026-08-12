@@ -13,7 +13,7 @@
 (function () {
   "use strict";
 
-  var KEY = "fok-consent-v1";
+  var KEY = "panelproof-consent-v1";
   window.dataLayer = window.dataLayer || [];
   function gtag() { dataLayer.push(arguments); }
   window.gtag = window.gtag || gtag;
