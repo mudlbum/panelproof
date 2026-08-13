@@ -24,6 +24,19 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+def _base_path() -> str:
+    """Mirror build.py: a project-page deploy serves under /<repo>/."""
+    try:
+        import json as _j, urllib.parse as _u
+        root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        cfg = _j.load(open(os.path.join(root, "site.config.json"), encoding="utf-8"))
+        return _u.urlparse(cfg["domain"]).path.rstrip("/")
+    except Exception:                                   # noqa: BLE001
+        return ""
+
+
+BASE = _base_path()
+
 DIST = os.environ.get("PP_DIST") or os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "dist")
 
@@ -69,7 +82,8 @@ def main():
 
         # links + assets resolve
         for ref in re.findall(r'(?:href|src)="(/[^"#?]*)"', h):
-            target = os.path.join(DIST, ref.lstrip("/"))
+            rel_ref = ref[len(BASE):] if BASE and ref.startswith(BASE + "/") else ref
+            target = os.path.join(DIST, rel_ref.lstrip("/"))
             if ref.endswith("/"):
                 target = os.path.join(target, "index.html")
             if not os.path.exists(target):

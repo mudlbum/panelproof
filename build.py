@@ -23,6 +23,7 @@ import html
 import json
 import os
 import re
+import urllib.parse
 import shutil
 import sys
 import unicodedata
@@ -40,6 +41,14 @@ DIST = os.environ.get("PP_DIST") or os.path.join(ROOT, "dist")
 CFG = json.load(open(os.path.join(ROOT, "site.config.json"), encoding="utf-8"))
 
 SITE = CFG["domain"].rstrip("/")
+
+# GitHub Pages serves a project repo at https://<user>.github.io/<repo>/, so every
+# root-absolute URL the templates emit ("/style.css") would resolve to the user
+# root and 404. BASE is the path component of `domain` — empty for a custom domain
+# at the apex, "/panelproof" for a project page — and write() prefixes internal
+# URLs with it. One config value, rather than 40 hand-edited templates.
+BASE = urllib.parse.urlparse(CFG["domain"]).path.rstrip("/")
+INTERNAL_URL = re.compile(r'((?:href|src)=")(/(?!/))')
 CATS = {c["slug"]: c for c in CFG["categories"]}
 
 
@@ -67,6 +76,8 @@ def esc(s) -> str:
 
 
 def write(path: str, content: str):
+    if BASE and path.endswith((".html", ".xml", ".txt", ".webmanifest")):
+        content = INTERNAL_URL.sub(rf"\1{BASE}/", content)
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         f.write(content)
@@ -970,7 +981,11 @@ def build():
 
     for f in os.listdir(os.path.join(ROOT, "static")):
         shutil.copy(os.path.join(ROOT, "static", f), os.path.join(DIST, f))
-    write(os.path.join(DIST, "CNAME"), SITE.split("//")[1] + "\n")
+    # A CNAME file tells Pages to serve ONLY at that hostname. Emitting one for a
+    # domain you do not yet own takes the site offline, so this is conditional.
+    _host = urllib.parse.urlparse(SITE).hostname or ""
+    if _host and not _host.endswith("github.io") and not BASE:
+        write(os.path.join(DIST, "CNAME"), _host + "\n")
     write(os.path.join(DIST, ".nojekyll"), "")
     print(f"✓ built → {DIST}")
     return posts
