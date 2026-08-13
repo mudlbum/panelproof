@@ -71,6 +71,18 @@ python3 scripts/new_post.py "Headline" --category hdr
 Write the takeaways last, and write them as if each will be quoted alone with everything
 else stripped away — because that is exactly what an answer engine does with them.
 
+**Pick the hero deliberately.** Order of preference is chart → photograph → typographic
+cover, and `hero:` in front matter overrides it (`hero: photo`, `hero: cover`,
+`hero: chart`). Check the last few posts before deciding: if two of the previous three
+already led with a chart, set `hero: photo` on this one even where a chart block exists.
+The chart still belongs in the body — but a homepage of nothing but charts reads as a
+template, and every card blurs together in a feed. Aim for roughly half and half, with
+the photograph going on pieces whose value is explanatory rather than numeric.
+
+Photographs need `PEXELS_API_KEY` in the environment. Without it the hero silently
+degrades to a typographic cover, which is not an error — the GitHub Actions build has
+the key and produces the published version.
+
 ---
 
 ## Step 4 — build, validate, publish

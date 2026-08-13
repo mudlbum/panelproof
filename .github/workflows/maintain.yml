@@ -30,6 +30,8 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Build
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
         run: python build.py
 
       # No PP_OFFLINE here — this is the point of the job. Every cited URL is

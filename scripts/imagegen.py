@@ -336,7 +336,20 @@ def hero(post, category=None, out_path=None, size=(1600, 900)):
     # Priority: the article's own data > a licensed photograph > typography.
     # Each step degrades silently to the next, so a missing API key or a failed
     # fetch costs visual richness but never breaks a build.
-    spec = post.get("chart")
+    #
+    # `hero:` in front matter overrides the order:
+    #   hero: photo   — force a photograph even when the post declares a chart
+    #   hero: cover   — force the typographic cover (no network, deterministic)
+    #   hero: chart   — the default when a chart block exists
+    # Use it to keep the front page from becoming a wall of charts: a page of
+    # identical-looking data covers reads as a template, which is the opposite
+    # of what a chart is for.
+    want = str(post.get("hero") or "").strip().lower()
+
+    if want == "cover":
+        return editorial_cover(post, out_path, size)
+
+    spec = None if want == "photo" else post.get("chart")
     if spec:
         import chartgen
         os.makedirs(os.path.dirname(out_path), exist_ok=True)

@@ -179,11 +179,23 @@ figure is still a human job, and it is the part that matters most.
 
 Generated at build time from the post itself — nothing to source or license.
 
+Order of preference: the article's own data → a licensed photograph → typography.
+Each step degrades silently, so a missing key never breaks a build.
+
 * **`chart:` block** → the hero becomes a real chart of those numbers, in the site
-  palette, with the source named on the image. Use it whenever there is a series
-  worth plotting; tier thresholds plot beautifully.
+  palette, with the source named on the image. Tier thresholds plot beautifully.
 * **`PEXELS_API_KEY` set and no chart** → a photograph, credited to the photographer.
 * **Neither** → a typographic cover: category, headline, and the lead bolded figure.
+
+**`hero:` overrides that order** — `hero: photo` forces a photograph even on a post
+that declares a chart, `hero: cover` forces the typographic cover, `hero: chart` is
+the default wherever a chart exists.
+
+Use it deliberately. Charts are this site's signature, but a homepage of nothing but
+charts reads as a template rather than a publication, and the cards all blur together
+in a feed. Aim for roughly **half charts, half photographs** across recent posts, and
+put the photograph on the pieces whose value is explanatory rather than numeric — a
+panel-technology comparison earns a photograph; a tier-threshold table earns its chart.
 
 Never invent numbers to justify a chart.
 
